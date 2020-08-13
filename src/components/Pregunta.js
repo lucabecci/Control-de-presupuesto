@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Error from './Error';
+import PropTypes from 'prop-types'
 
-const Pregunta = ({guardarPresupuesto, guardarRestante}) => {
+const Pregunta = ({guardarPresupuesto, guardarRestante, actualizarPregunta}) => {
     //Definimos el state para el presupuesto
     const [cantidad, guardarCantidad] = useState(0);
     //State por el valor ingresado es erroneo
@@ -24,6 +25,7 @@ const Pregunta = ({guardarPresupuesto, guardarRestante}) => {
         //Guardamos la cantidad en presupuesto y restante
         guardarPresupuesto(cantidad);
         guardarRestante(cantidad);
+        actualizarPregunta(false)
     }
     return (
         <>
@@ -52,3 +54,9 @@ const Pregunta = ({guardarPresupuesto, guardarRestante}) => {
 }
 
 export default Pregunta
+
+Pregunta.prototype = {
+    guardarPresupuesto: PropTypes.number.isRequired,
+    guardarRestante: PropTypes.number.isRequired,
+    actualizarPregunta: PropTypes.bool.isRequired
+}
